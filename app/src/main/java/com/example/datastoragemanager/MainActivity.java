@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -51,6 +53,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button btnExternalStorage = findViewById(R.id.activity_main__btn__external_storage);
+        btnExternalStorage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendDataToExternalStorage(etInfo.getText().toString() + "\n");
+                etInfo.setText("");
+            }
+        });
+
+    }
+
+    private void sendDataToExternalStorage(String data) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+            File downloadFolder =
+                    new File(
+                            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                            "newDirectory/newSubdirectory");
+
+            boolean isSuccessful = downloadFolder.mkdirs();
+                if (!isSuccessful) {
+                    Toast.makeText(this,"external storage access error",Toast.LENGTH_SHORT).show();
+                }
+
+        }
     }
 
     private void sendDataToInternalStorage(String data) {

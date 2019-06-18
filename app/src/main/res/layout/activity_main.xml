@@ -52,4 +52,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_main__et__info_internally" />
 
+    <Button
+        android:id="@+id/activity_main__btn__external_storage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_store_externally"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_main__btn__internal_storage" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
